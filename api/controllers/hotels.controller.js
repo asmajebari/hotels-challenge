@@ -5,18 +5,18 @@ function getHotels(req, res) {
   const hotelsList = model[0];
   let hotels = [];
   
- //if there's no query passed, return the whole object containing the hotels
+ //if there's no query parameter passed, return the whole object containing the hotels
   if (JSON.stringify(req.query) === '{}') {
     res.json(hotelsList);
   } else {
-    //else, if the property stars has a value, return the list of hotels corresponding with it
+    //else, if the variable stars has a value, return the list of hotels corresponding with it
     if (stars) {
       for (let destination in hotelsList) {
         for (let i = 0; i < hotelsList[destination].length; i++) {
           let hotel = {}
           let hotelName = hotelsList[destination][i].name;
           let hotelStars = hotelsList[destination][i].stars;
-          //if a hotel stars value matches with the query, then create a hotel object and push it to the hotels array
+          //if the hotelStars value matches with the stars value passed in the URL, then create a hotel object and push it to the hotels array
           if (hotelStars == stars) {
             hotel = {
               name: hotelName,
@@ -36,7 +36,7 @@ function getHotels(req, res) {
         });
       }
     } else {
-      //if the query is not empty but the stars property has no value, then the query was not correctly typed
+      //if the query object is not empty but the stars variable has no value, then the query was not correctly typed
       res.status(400).json({
         "error": "Please provide a proper query"
       })
