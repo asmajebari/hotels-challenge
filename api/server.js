@@ -19,8 +19,16 @@ app.get('/', (req, res) => {
 
 app.use('/hotels', hotelsRouter);
 
+//user is redirected if a path different than /hotels is typed
+app.get('/*',function(req, res){
+    res.redirect('/');
+  });
+
 app.set('json spaces', 2);
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}...`);
-})
+});
+
+module.exports = app;
+

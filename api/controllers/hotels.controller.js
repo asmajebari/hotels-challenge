@@ -38,7 +38,7 @@ function getHotels(req, res) {
     } else {
       //if the query is not empty but the stars property has no value, then the query was not correctly typed
       res.status(400).json({
-        "error": "Please provide a proper query"
+        "error": "Query not correct"
       })
     }
   }
